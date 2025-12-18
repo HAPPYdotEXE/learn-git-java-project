@@ -1,14 +1,8 @@
-import java.util.*;
+public class Playlist extends AudioCollection{
 
-public class Playlist {
-
-    private String title;
-    private List<Content> contents;
 
     public Playlist(String title) {
-        this.title = title;
-        this.contents = new ArrayList<>();
-        // hashset vs arrayList
+        super(title, "User created", 2025, "Mixed");
     }
 
 
@@ -17,79 +11,28 @@ public class Playlist {
             System.out.println("Error: Cannot add albums to playlist!");
             return false;
         }
-        if (!contents.add(content)){
+        if (items.contains(content)){
             System.out.println("Error:" + content.getClass().getSimpleName() + " (" + content.getTitle() +") is already in the playlist");
             return false;
         }
-        return true;
+        return items.add(content);
     }
 
-    public boolean removeContent(Content content){
-        return contents.remove(content);
-    }
 
-    public long getTotalDurationSeconds(){
-        return contents.stream()
-                .mapToLong(s-> s.getDurationSeconds())
-                .sum();
-    }
-
-    public String getFormatDuration(){
-        long durationSeconds = getTotalDurationSeconds();
-        long minutes = durationSeconds / 60;
-        long seconds = durationSeconds % 60;
-        return String.format("%d min. %02d sec.", minutes, seconds);
-    }
-
-    public String getTitle(){
-        return title;
-    }
-    public List<Content> getContents(){
-        return contents;
-    }
-
-    public void displayPlaylistInfo(){
-        System.out.println("\n--- Playlist: " + title + " ---");
-        System.out.println("Elements: " + contents.size());
+    public void displayInfo(){
+        System.out.println("\n--- Playlist: " + getTitle() + " ---");
+        System.out.println("Elements: " + items.size());
         System.out.println("Duration: " + getFormatDuration());
 
-        if (contents.isEmpty()){
+        if (items.isEmpty()){
             System.out.println("The playlist is empty!");
             return;
         }
 
         System.out.println("\n--- Content ---");
         int index = 1;
-        for(Content c : contents){
+        for(Content c : items){
             System.out.printf("%d. %s\n", index++, c.toString());
         }
     }
-
-    public void sortByTitle(){
-        contents.sort(Comparator.comparing(s-> s.getTitle()));
-//        contents.sort(Content.BY_TITLE);
-        System.out.println("Playlist \"" + title + "\" is sorted by title.");
-    }
-
-    public void sortByAuthor(){
-        contents.sort(Comparator.comparing(s-> s.getAuthor()));
-//        contents.sort(Content.BY_AUTHOR);
-        System.out.println("Playlist \"" + title + "\" is sorted by author.");
-
-    }
-
-    public void sortByPublicationYear(){
-        contents.sort(Comparator.comparing(s-> s.getPublicationYear()));
-//        contents.sort(Content.BY_YEAR);
-        System.out.println("Playlist \"" + title + "\" is sorted by publication year.");
-    }
-
-    public void sortDefault(){
-        Collections.sort(contents);
-    }
-
-
-
-
-
 }
