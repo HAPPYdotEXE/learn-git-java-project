@@ -1,3 +1,7 @@
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.List;
+
 public class Playlist extends AudioCollection{
 
 
@@ -18,7 +22,7 @@ public class Playlist extends AudioCollection{
         return items.add(content);
     }
 
-
+    @Override
     public void displayInfo(){
         System.out.println("\n--- Playlist: " + getTitle() + " ---");
         System.out.println("Elements: " + items.size());
@@ -33,6 +37,14 @@ public class Playlist extends AudioCollection{
         int index = 1;
         for(Content c : items){
             System.out.printf("%d. %s\n", index++, c.toString());
+        }
+    }
+
+    @JsonProperty("items")
+    public void setItems(List<Song> content) {
+        if(content != null){
+            this.items.clear();
+            this.items.addAll(content);
         }
     }
 }

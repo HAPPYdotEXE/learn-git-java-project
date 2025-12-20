@@ -1,38 +1,33 @@
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
+
 public class Album extends AudioCollection {
 
+    Album(){};
 
-
-    public Album(String title, String artist, int publicationYear, String genre){
-        super(title, artist, publicationYear, genre);
+    @JsonProperty("items")
+    public void setItems(List<Song> songs) {
+        if (songs != null) {
+            this.items.clear();
+            this.items.addAll(songs);
+            for (Song s : songs) {
+                s.setAlbumTitle(this.getTitle());
+            }
+        }
     }
 
+
+    @Override
     public boolean addContent(Content content){
-
-        if(!(content instanceof Song)){
-            System.out.println("Error: only songs can be added to albums.");
-            return false;
-        }
-        Song song = (Song) content;
-
-        if(!song.getAuthor().equals(this.getAuthor())){
-            System.out.println("Error: Song (" + song.getTitle() +") does not match album artist");
-            return false;
-        }
-        else if (song.getPublicationYear() != this.getPublicationYear()){
-            System.out.println("Error: Song (" + song.getTitle() +") does not match album release year");
-            return false;
-        }
-        if (items.contains(song)){
-
-            System.out.println("Error: Song (" + song.getTitle() +") is already in the album");
-            return false;
-        } else {
-            song.setAlbumTitle(this.getTitle());
-            return items.add(song);
-        }
+        System.out.println("Operation Denied: Cannot add songs to an official Album after it's been issued.");
+        return false;
     }
 
-
+    @Override
+    public boolean removeContent(Content content){
+        System.out.println("Cannot remove songs from an official Album.");
+        return false;
+    }
 
 
     @Override

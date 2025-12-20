@@ -1,10 +1,15 @@
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public abstract class AudioCollection extends Content {
 
+    @JsonProperty("items")
     protected List<Content> items;
+
+    public AudioCollection(){}
 
     public AudioCollection(String title, String author, int publicationYear, String genre) {
         super(title, author, publicationYear, genre, 0);
@@ -26,9 +31,6 @@ public abstract class AudioCollection extends Content {
 
     @Override
     public long getDurationSeconds(){
-        //        long duration = 0;
-        //        for(Song c : songs) { duration += c.getDurationSeconds(); }
-        //        return duration;
 
         return items.stream()
                 .mapToLong(s-> s.getDurationSeconds())
@@ -61,5 +63,6 @@ public abstract class AudioCollection extends Content {
     public List<Content> getItems(){
         return items;
     }
+
 
 }

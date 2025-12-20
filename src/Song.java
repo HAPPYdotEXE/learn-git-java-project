@@ -2,6 +2,8 @@ public class Song extends Content{
 
     private String albumTitle;
 
+    public Song(){}
+
     public Song(String title, String author, int publicationYear, String genre, long durationSeconds, String albumTitle){
         super(title, author, publicationYear, genre, durationSeconds);
         this.albumTitle = albumTitle;

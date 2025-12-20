@@ -1,14 +1,16 @@
 public class Podcast extends Content{
 
-
     private String host;
     private String seriesName;
     private int episodeNumber;
     private String topicCategory;
 
+    public Podcast(){
+    }
+
     public Podcast(String title, String host, int publicationYear, String genre, long durationSeconds,
                    String seriesName, int episodeNumber, String topicCategory){
-        super(title, host, publicationYear, genre, 0);
+        super(title, host, publicationYear, genre, durationSeconds);
 
         this.host = host;
         this.seriesName = seriesName;

@@ -4,6 +4,8 @@ public class Audiobook extends Content{
     private String originalAuthor;
     private String seriesName;
 
+    public Audiobook(){}
+
     public Audiobook(String title, String publisher, int publicationYear, String genre,
                      long durationSeconds, String narrator, String originalAuthor, String seriesName){
 
