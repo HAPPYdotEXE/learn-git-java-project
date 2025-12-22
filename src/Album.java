@@ -24,9 +24,8 @@ public class Album extends AudioCollection {
     }
 
     @Override
-    public boolean removeContent(Content content){
+    public void removeContent(Content content){
         System.out.println("Cannot remove songs from an official Album.");
-        return false;
     }
 
 

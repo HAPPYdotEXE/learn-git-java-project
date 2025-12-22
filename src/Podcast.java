@@ -1,3 +1,5 @@
+import java.math.BigInteger;
+
 public class Podcast extends Content{
 
     private String seriesName;
@@ -6,7 +8,7 @@ public class Podcast extends Content{
     public Podcast(){
     }
 
-    public Podcast(String title, String author, int publicationYear, Genre genre, long durationSeconds,
+    public Podcast(String title, String author, int publicationYear, Genre genre, BigInteger durationSeconds,
                    String seriesName, int episodeNumber){
         super(title, author, publicationYear, genre, durationSeconds);
         setSeriesName(seriesName);

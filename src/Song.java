@@ -1,10 +1,12 @@
+import java.math.BigInteger;
+
 public class Song extends Content{
 
     private String albumTitle;
 
     public Song(){}
 
-    public Song(String title, String author, int publicationYear, Genre genre, long durationSeconds, String albumTitle){
+    public Song(String title, String author, int publicationYear, Genre genre, BigInteger durationSeconds, String albumTitle){
         super(title, author, publicationYear, genre, durationSeconds);
         setAlbumTitle(albumTitle);
     }

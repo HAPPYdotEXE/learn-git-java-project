@@ -1,6 +1,7 @@
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+import java.math.BigInteger;
 import java.util.Comparator;
 import java.util.Objects;
 
@@ -25,17 +26,17 @@ public abstract class Content implements Comparable<Content> {
     private String seriesName;
     private int publicationYear;
     private Genre genre;
-    private long durationMilliseconds;
+    private BigInteger durationMilliseconds;
 
-    private final static long MAX_DURATION = 8_786_692_000L; // longest audiobook recoded - Shree Haricharitramrut Sagar (milliseconds)
-    private final static int MIN_PUBLICATION_YEAR = 1857; // first ever recorded audio - 1857
-    private final static int  MAX_PUBLICATION_YEAR = java.time.LocalDate.now(java.time.ZoneOffset.ofHours(14)).getYear(); // maximum possible year no matter where the server is deployed
+    public final static BigInteger MAX_DURATION = BigInteger.valueOf(8_786_692_000L); // longest audiobook recoded - Shree Haricharitramrut Sagar (milliseconds)
+    public final static int MIN_PUBLICATION_YEAR = 1857; // first ever recorded audio - 1857
+    public final static int  MAX_PUBLICATION_YEAR = java.time.LocalDate.now(java.time.ZoneOffset.ofHours(14)).getYear(); // maximum possible year no matter where the server is deployed
 
 
     public Content() {
     } // used by jackson to load objects and use setters for the values
 
-    public Content(String title, String author, int publicationYear, Genre genre, long durationMilliseconds) {
+    public Content(String title, String author, int publicationYear, Genre genre, BigInteger durationMilliseconds) {
         setTitle(title);
         setAuthor(author);
         setPublicationYear(publicationYear);
@@ -59,7 +60,7 @@ public abstract class Content implements Comparable<Content> {
         return genre;
     }
 
-    public long getDurationSeconds() {
+    public BigInteger getDurationMilliseconds() {
         return durationMilliseconds;
     }
 
@@ -105,11 +106,11 @@ public abstract class Content implements Comparable<Content> {
         this.genre = genre;
     }
 
-    public void setDurationMilliseconds(long durationMilliseconds) {
-        if (durationMilliseconds > MAX_DURATION) {
+    public void setDurationMilliseconds(BigInteger durationMilliseconds) {
+        if (durationMilliseconds.compareTo(MAX_DURATION) == 0) {
             throw new IllegalArgumentException("Duration exceeded");
         }
-        if (durationMilliseconds < 0){
+        if (durationMilliseconds.compareTo(BigInteger.valueOf(0)) < 0){
             throw new IllegalArgumentException("Duration below zero!");
         }
         this.durationMilliseconds = durationMilliseconds;
@@ -134,10 +135,10 @@ public abstract class Content implements Comparable<Content> {
     }
 
     public String formatDuration() {
-        long durationSeconds = durationMilliseconds / 1000;
-        long minutes = durationSeconds / 60;
-        long seconds = durationSeconds % 60;
-        return String.format("%d min. %02d sec.", minutes, seconds);
+        BigInteger durationSeconds = durationMilliseconds.divide(BigInteger.valueOf(1000));
+        BigInteger minutes = durationSeconds.divide(BigInteger.valueOf(60));
+        BigInteger seconds = durationSeconds.remainder(BigInteger.valueOf(60));
+        return String.format("%s min. %02d sec.", minutes, seconds);
     }
 
     public static Comparator<Content> BY_TITLE = Comparator.comparing(s -> s.title);
