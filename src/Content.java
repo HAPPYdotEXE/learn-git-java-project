@@ -32,7 +32,7 @@ public abstract class Content implements Comparable<Content> {
         return publicationYear;
     }
 
-    public Object getGenre() {
+    public String getGenre() {
         return genre;
     }
 
