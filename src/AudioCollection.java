@@ -11,7 +11,7 @@ public abstract class AudioCollection extends Content {
 
     public AudioCollection(){}
 
-    public AudioCollection(String title, String author, int publicationYear, String genre) {
+    public AudioCollection(String title, String author, int publicationYear, Genre genre) {
         super(title, author, publicationYear, genre, 0);
         this.items = new ArrayList<>();
     }

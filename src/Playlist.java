@@ -6,7 +6,7 @@ public class Playlist extends AudioCollection{
 
 
     public Playlist(String title) {
-        super(title, "User created", 2025, "Mixed");
+        super(title, "User created", 2025, Genre.MIXED);
     }
 
 
