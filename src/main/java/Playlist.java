@@ -1,25 +1,36 @@
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class Playlist extends AudioCollection{
 
 
     public Playlist(String title) {
-        super(title, "User created", 2025, Genre.MIXED);
+        super(title, "User created", LocalDate.now().getYear(), Genre.MIXED);
     }
 
+    @JsonProperty("items")
+    public void setItems(List<Content> content) {
+        if(content != null){
+            this.items.clear();
+            this.items.addAll(content);
+        }
+    }
 
-    public boolean addContent(Content content) {
+    public void addContent(Content content) {
         if (content instanceof Album) {
-            System.out.println("Error: Cannot add albums to playlist!");
-            return false;
+            throw new IllegalArgumentException("Error: cannot add albums to playlists");
         }
         if (items.contains(content)){
-            System.out.println("Error:" + content.getClass().getSimpleName() + " (" + content.getTitle() +") is already in the playlist");
-            return false;
+            throw new IllegalArgumentException("Error:" + content.getClass().getSimpleName() + " (" + content.getTitle() +") is already in the playlist");
         }
-        return items.add(content);
+        items.add(content);
+    }
+    public void removeContent(Content content) {
+        if (items.remove(content)){
+            System.out.println(String.format("Removed: %s \nFrom: %s", content.toString(), this.getTitle()));
+        }
     }
 
     @Override
@@ -37,14 +48,6 @@ public class Playlist extends AudioCollection{
         int index = 1;
         for(Content c : items){
             System.out.printf("%d. %s\n", index++, c.toString());
-        }
-    }
-
-    @JsonProperty("items")
-    public void setItems(List<Song> content) {
-        if(content != null){
-            this.items.clear();
-            this.items.addAll(content);
         }
     }
 }

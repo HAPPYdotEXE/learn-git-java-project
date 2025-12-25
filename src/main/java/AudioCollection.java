@@ -18,14 +18,10 @@ public abstract class AudioCollection extends Content {
         this.items = new ArrayList<>();
     }
 
-
-    public abstract boolean addContent(Content content);
-
-    public void removeContent(Content content) {
-        if (items.remove(content)){
-            System.out.println(String.format("Removed: %s \nFrom: %s", content.toString(), this.getTitle()));
-        }
+    public List<Content> getItems() {
+        return items;
     }
+    public abstract void setItems(List<Content> contents);
 
     @Override
     public BigInteger getDurationMilliseconds() {
@@ -35,7 +31,7 @@ public abstract class AudioCollection extends Content {
     }
 
     public String getFormatDuration() {
-        BigInteger durationSeconds = getDurationMilliseconds();
+        BigInteger durationSeconds = getDurationMilliseconds().divide(BigInteger.valueOf(1000));
         BigInteger minutes = durationSeconds.divide(BigInteger.valueOf(60));
         BigInteger seconds = durationSeconds.remainder(BigInteger.valueOf(60));
         return String.format("%d min. %02d sec.", minutes, seconds);
@@ -59,10 +55,4 @@ public abstract class AudioCollection extends Content {
     public void sortDefault() {
         Collections.sort(items);
     }
-
-    public List<Content> getItems() {
-        return items;
-    }
-
-
 }

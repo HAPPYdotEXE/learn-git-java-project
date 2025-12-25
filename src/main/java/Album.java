@@ -1,4 +1,5 @@
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 public class Album extends AudioCollection {
@@ -6,7 +7,12 @@ public class Album extends AudioCollection {
     Album(){};
 
     @JsonProperty("items")
-    public void setItems(List<Song> songs) {
+    public void setItems(List<Content> contents) {
+        List<Song> songs = contents.stream()
+                .filter(c -> c instanceof Song)
+                .map(c -> (Song) c)
+                .toList();
+
         if (songs != null) {
             this.items.clear();
             this.items.addAll(songs);
@@ -15,19 +21,6 @@ public class Album extends AudioCollection {
             }
         }
     }
-
-
-    @Override
-    public boolean addContent(Content content){
-        System.out.println("Operation Denied: Cannot add songs to an official Album after it's been issued.");
-        return false;
-    }
-
-    @Override
-    public void removeContent(Content content){
-        System.out.println("Cannot remove songs from an official Album.");
-    }
-
 
     @Override
     public void displayInfo(){

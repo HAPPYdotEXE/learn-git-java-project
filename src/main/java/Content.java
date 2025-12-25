@@ -23,7 +23,7 @@ import java.util.Objects;
 public abstract class Content implements Comparable<Content> {
 
     private String title;
-    private String seriesName;
+    private String author;
     private int publicationYear;
     private Genre genre;
     private BigInteger durationMilliseconds;
@@ -49,7 +49,7 @@ public abstract class Content implements Comparable<Content> {
     }
 
     public String getAuthor() {
-        return seriesName;
+        return author;
     }
 
     public int getPublicationYear() {
@@ -89,7 +89,7 @@ public abstract class Content implements Comparable<Content> {
         if (author.length() >= 150) {
             throw new IllegalArgumentException("Author length must be less than or equal to 150");
         }
-        this.seriesName = author;
+        this.author = author;
     }
 
     public void setPublicationYear(int publicationYear) {
@@ -107,7 +107,7 @@ public abstract class Content implements Comparable<Content> {
     }
 
     public void setDurationMilliseconds(BigInteger durationMilliseconds) {
-        if (durationMilliseconds.compareTo(MAX_DURATION) == 0) {
+        if (durationMilliseconds.compareTo(MAX_DURATION) > 0) {
             throw new IllegalArgumentException("Duration exceeded");
         }
         if (durationMilliseconds.compareTo(BigInteger.valueOf(0)) < 0){
@@ -121,12 +121,12 @@ public abstract class Content implements Comparable<Content> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Content content = (Content) o;
-        return Objects.equals(title, content.title) && Objects.equals(seriesName, content.seriesName);
+        return Objects.equals(title, content.title) && Objects.equals(author, content.author) && Objects.equals(publicationYear, content.publicationYear);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, seriesName);
+        return Objects.hash(title, author);
     }
 
     @Override
@@ -142,7 +142,7 @@ public abstract class Content implements Comparable<Content> {
     }
 
     public static Comparator<Content> BY_TITLE = Comparator.comparing(s -> s.title);
-    public static Comparator<Content> BY_AUTHOR = Comparator.comparing(s -> s.seriesName);
+    public static Comparator<Content> BY_AUTHOR = Comparator.comparing(s -> s.author);
     public static Comparator<Content> BY_YEAR = Comparator.comparing(s -> s.publicationYear);
 
     public abstract void displayInfo();
