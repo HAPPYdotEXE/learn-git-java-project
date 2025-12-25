@@ -1,10 +1,14 @@
+import java.math.BigInteger;
+
 public class Song extends Content{
 
     private String albumTitle;
 
-    public Song(String title, String author, int publicationYear, String genre, long durationSeconds, String albumTitle){
+    public Song(){}
+
+    public Song(String title, String author, int publicationYear, Genre genre, BigInteger durationSeconds, String albumTitle){
         super(title, author, publicationYear, genre, durationSeconds);
-        this.albumTitle = albumTitle;
+        setAlbumTitle(albumTitle);
     }
 
     public String getAlbumTitle(){
@@ -12,6 +16,16 @@ public class Song extends Content{
     }
 
     public void setAlbumTitle(String albumTitle){
+        if (albumTitle == null) {
+            throw new IllegalArgumentException("Album title must not be null");
+        }
+        albumTitle = albumTitle.trim();
+        if (albumTitle.isBlank()) {
+            throw new IllegalArgumentException("Album title must not be blank");
+        }
+        if (albumTitle.length() >= 150) {
+            throw new IllegalArgumentException("Album title length must be less than or equal to 150");
+        }
         this.albumTitle = albumTitle;
     }
 
