@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Playlist extends AudioCollection{
 
+    public Playlist(){}
 
     public Playlist(String title) {
         super(title, "User created", LocalDate.now().getYear(), Genre.MIXED);
@@ -44,7 +45,7 @@ public class Playlist extends AudioCollection{
             return;
         }
 
-        System.out.println("\n--- Content ---");
+        System.out.println("--- Content ---");
         int index = 1;
         for(Content c : items){
             System.out.printf("%d. %s\n", index++, c.toString());

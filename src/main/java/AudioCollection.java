@@ -1,3 +1,4 @@
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigInteger;
@@ -11,6 +12,7 @@ public abstract class AudioCollection extends Content {
     protected List<Content> items;
 
     public AudioCollection() {
+        this.items = new ArrayList<>();
     }
 
     public AudioCollection(String title, String author, int publicationYear, Genre genre) {
@@ -23,6 +25,7 @@ public abstract class AudioCollection extends Content {
     }
     public abstract void setItems(List<Content> contents);
 
+    @JsonIgnore
     @Override
     public BigInteger getDurationMilliseconds() {
         return items.stream()
@@ -30,6 +33,7 @@ public abstract class AudioCollection extends Content {
                 .reduce(BigInteger.ZERO, BigInteger::add);
     }
 
+    @JsonIgnore
     public String getFormatDuration() {
         BigInteger durationSeconds = getDurationMilliseconds().divide(BigInteger.valueOf(1000));
         BigInteger minutes = durationSeconds.divide(BigInteger.valueOf(60));

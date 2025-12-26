@@ -1,0 +1,93 @@
+[ {
+  "type" : "album",
+  "title" : "Thriller",
+  "author" : "Michael Jackson",
+  "publicationYear" : 1982,
+  "genre" : "POP",
+  "items" : [ {
+    "type" : "song",
+    "title" : "Wanna Be Startin' Somethin'",
+    "author" : "Michael Jackson",
+    "publicationYear" : 1982,
+    "genre" : "POP",
+    "durationMilliseconds" : 363000,
+    "albumTitle" : "Thriller"
+  }, {
+    "type" : "song",
+    "title" : "Thriller",
+    "author" : "Michael Jackson",
+    "publicationYear" : 1982,
+    "genre" : "POP",
+    "durationMilliseconds" : 357000,
+    "albumTitle" : "Thriller"
+  }, {
+    "type" : "song",
+    "title" : "Beat It",
+    "author" : "Michael Jackson",
+    "publicationYear" : 1982,
+    "genre" : "ROCK",
+    "durationMilliseconds" : 258000,
+    "albumTitle" : "Thriller"
+  }, {
+    "type" : "song",
+    "title" : "Billie Jean",
+    "author" : "Michael Jackson",
+    "publicationYear" : 1982,
+    "genre" : "POP",
+    "durationMilliseconds" : 294000,
+    "albumTitle" : "Thriller"
+  } ]
+}, {
+  "type" : "playlist",
+  "title" : "My morning mix",
+  "author" : "User created",
+  "publicationYear" : 2025,
+  "genre" : "MIXED",
+  "items" : [ {
+    "type" : "audiobook",
+    "title" : "Project Hail Mary",
+    "author" : "Andy Weir",
+    "publicationYear" : 1980,
+    "genre" : "AUDIOBOOK_FICTION",
+    "durationMilliseconds" : 57600000,
+    "narrator" : "Ray Porter",
+    "publisher" : "Audible",
+    "initialPublicationYear" : 2021
+  }, {
+    "type" : "song",
+    "title" : "Beat It",
+    "author" : "Michael Jackson",
+    "publicationYear" : 1982,
+    "genre" : "ROCK",
+    "durationMilliseconds" : 258000,
+    "albumTitle" : "Thriller"
+  }, {
+    "type" : "podcast",
+    "title" : "The Joe Rogan Experience",
+    "author" : "Joe Rogan",
+    "publicationYear" : 2023,
+    "genre" : "PODCAST_ENTERTAINMENT",
+    "durationMilliseconds" : 7200000,
+    "seriesName" : "JRE",
+    "episodeNumber" : 2000
+  } ]
+}, {
+  "type" : "podcast",
+  "title" : "The Joe Rogan Experience",
+  "author" : "Joe Rogan",
+  "publicationYear" : 2023,
+  "genre" : "PODCAST_ENTERTAINMENT",
+  "durationMilliseconds" : 7200000,
+  "seriesName" : "JRE",
+  "episodeNumber" : 2000
+}, {
+  "type" : "audiobook",
+  "title" : "Project Hail Mary",
+  "author" : "Andy Weir",
+  "publicationYear" : 2021,
+  "genre" : "AUDIOBOOK_FICTION",
+  "durationMilliseconds" : 57600000,
+  "narrator" : "Ray Porter",
+  "publisher" : "Audible",
+  "initialPublicationYear" : 2021
+} ]
