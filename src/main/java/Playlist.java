@@ -8,8 +8,6 @@ public class Playlist extends AudioCollection{
         super(title, "User created", LocalDate.now().getYear(), Genre.MIXED);
     }
 
-
-
     public void addContent(Content content) {
         if (content instanceof Album) {
             throw new IllegalArgumentException("Error: cannot add albums to playlists");
@@ -20,27 +18,7 @@ public class Playlist extends AudioCollection{
         items.add(content);
     }
     public void removeContent(Content content) {
-        if (items.remove(content)){
-            System.out.printf("\nRemoved: %s \nFrom: %s", content.toString(), this.getTitle());
-        }
-    }
-
-    @Override
-    public void displayInfo(){
-        System.out.println("\n--- Playlist: " + getTitle() + " ---");
-        System.out.println("Elements: " + items.size());
-        System.out.println("Duration: " + getFormatDuration());
-
-        if (items.isEmpty()){
-            System.out.println("The playlist is empty!");
-            return;
-        }
-
-        System.out.println("--- Content ---");
-        int index = 1;
-        for(Content c : items){
-            System.out.printf("%d. %s\n", index++, c.toString());
-        }
+        items.remove(content);
     }
 
     @Override

@@ -39,18 +39,6 @@ public class Audiobook extends Content{
     }
 
     @Override
-    public void displayInfo(){
-        System.out.println("--- Audiobook: " + getTitle() + " ---");
-        System.out.println("Original author: " + getAuthor());
-        System.out.println("Narrator: " + narrator);
-        System.out.println("Initial publication year: " + initialPublicationYear);
-        System.out.println("Publisher: " + publisher);
-        System.out.println("Genre: " + getGenre());
-        System.out.println("Year: " + getPublicationYear());
-        System.out.println("Duration: " + formatDuration());
-    }
-
-    @Override
     public String toString() {
         return String.format("[Audiobook] Title: %s, Original Author: %s, Narrator: %s, Duration: %s",
                 getTitle(), getAuthor(), narrator, formatDuration());

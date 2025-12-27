@@ -14,6 +14,7 @@ public class ConsoleController {
     private List<Content> allContent;
     private final Scanner scanner;
     private final ObjectMapper mapper;
+    private final ConsoleView view;
 
     public ConsoleController() {
         this.dataManager = new DataManager();
@@ -21,6 +22,7 @@ public class ConsoleController {
         this.scanner = new Scanner(System.in);
         this.mapper = new ObjectMapper();
         this.mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        this.view = new ConsoleView();
     }
 
     public void start() {
@@ -266,7 +268,7 @@ public class ConsoleController {
     private void handleShow(String title) {
         Content c = resolveContent(title);
         if (c != null) {
-            c.displayInfo();
+            view.displayInfo(c);
         } else {
             System.out.println("Item not found.");
         }

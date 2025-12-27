@@ -20,15 +20,6 @@ public class Song extends Content{
     }
 
     @Override
-    public void displayInfo(){
-        System.out.println("--- Song: " + getTitle() + " ---");
-        System.out.println("Author: " + getAuthor());
-        System.out.println("Genre: " + getGenre());
-        System.out.println("Year: " + getPublicationYear());
-        System.out.println("Duration: " + formatDuration());
-    }
-
-    @Override
     public String toString(){
         return String.format("[Song] Title: %s, Artist: %s, Album: %s, Duration: %s",
                 getTitle(), getAuthor(), albumTitle, formatDuration());

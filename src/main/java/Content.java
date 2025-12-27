@@ -134,8 +134,6 @@ public abstract class Content implements Comparable<Content> {
     public static Comparator<Content> BY_TYPE = Comparator.comparing(s -> s.getClass().getSimpleName());
 
 
-    public abstract void displayInfo();
-
     protected String validateString(String value, String fieldName) {
         if (value == null) {
             throw new IllegalArgumentException(fieldName + " must not be null");

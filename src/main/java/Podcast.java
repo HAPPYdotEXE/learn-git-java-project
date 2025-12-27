@@ -35,16 +35,6 @@ public class Podcast extends Content{
     }
 
     @Override
-    public void displayInfo(){
-        System.out.println("--- Podcast Episode: " + getTitle() + " ---");
-        System.out.println("Series: " + seriesName + "(Ep. " + episodeNumber + ")");
-        System.out.println("Host: " + getAuthor());
-        System.out.println("Genre: " + getGenre());
-        System.out.println("Year: " + getPublicationYear());
-        System.out.println("Duration: " + formatDuration());
-    }
-
-    @Override
     public String toString() {
         return String.format("[Podcast] Series: %s, Title: %s (E%d), Host: %s, Duration: %s",
                 seriesName, getTitle(), episodeNumber, getGenre(), formatDuration());
