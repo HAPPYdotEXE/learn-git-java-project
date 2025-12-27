@@ -70,7 +70,7 @@ public abstract class Content implements Comparable<Content> {
     }
 
     public void setAuthor(String author) {
-        this.title = validateString(title, "Author");
+        this.author = validateString(author, "Author");
     }
 
     public void setPublicationYear(int publicationYear) {

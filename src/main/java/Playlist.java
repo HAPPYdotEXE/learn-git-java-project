@@ -11,13 +11,7 @@ public class Playlist extends AudioCollection{
         super(title, "User created", LocalDate.now().getYear(), Genre.MIXED);
     }
 
-    @JsonProperty("items")
-    public void setItems(List<Content> content) {
-        if(content != null){
-            this.items.clear();
-            this.items.addAll(content);
-        }
-    }
+
 
     public void addContent(Content content) {
         if (content instanceof Album) {

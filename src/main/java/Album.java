@@ -8,19 +8,16 @@ public class Album extends AudioCollection {
     Album() {
     }
 
-    @JsonProperty("items")
-    public void setItems(List<Content> contents) {
-        List<Song> songs = contents.stream()
+    @Override
+    public void setItems(List<Content> content) {
+        List<Song> songs = songs = content.stream()
                 .filter(c -> c instanceof Song)
                 .map(c -> (Song) c)
                 .toList();
-
-
-        this.items = new ArrayList<>(songs);
-        for (Song s : songs) {
+        for(Song s : songs){
             s.setAlbumTitle(this.getTitle());
         }
-
+        super.setItems(content);
     }
 
     @Override
