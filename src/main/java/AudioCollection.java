@@ -31,6 +31,7 @@ public abstract class AudioCollection extends Content {
             this.items.addAll(content);
         }
     }
+
     @JsonIgnore
     @Override
     public BigInteger getDurationMilliseconds() {

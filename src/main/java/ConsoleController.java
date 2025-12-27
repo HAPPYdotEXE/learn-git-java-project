@@ -1,12 +1,8 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-import java.io.File;
-import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -28,21 +24,23 @@ public class ConsoleController {
     }
 
     public void start() {
-        System.out.println("Application started!");
+        System.out.println("Loading application..");
         System.out.println("Type 'help' for a list of commands.");
 
-        // Initial load
         catalog = dataManager.load();
+        refreshCache();
         allContent = catalog.stream()
                 .flatMap(c -> {
                     if (c instanceof AudioCollection) {
-                        return ((AudioCollection) c).getItems().stream();
-                    } else {
-                        return Stream.of(c);
-                    }
-                })
-                .distinct() // Prevents the same song from appearing twice if it's in two playlists
+                        // Return a stream containing the Collection object ITSELF + its elements as a standalone objects
+                        return Stream.concat(
+                                Stream.of(c),
+                                ((AudioCollection) c).getItems().stream()
+                        );
+                    } else { return Stream.of(c);  }})
+                .distinct()
                 .collect(Collectors.toList());
+        // collect(Collectors.toList()) is used to return mutable list / .toList() for immutable
 
 
         System.out.println("Loaded " + catalog.size() + " items from storage.");
@@ -53,7 +51,7 @@ public class ConsoleController {
             String input = scanner.nextLine().trim();
             if (input.isEmpty()) continue;
 
-            String[] parts = input.split("\\s+", 2);
+            String[] parts = input.split("\\s+", 2); // (\s+) - regex that allows many whitespaces between the two parts
             String command = parts[0].toLowerCase();
             String args = parts.length > 1 ? parts[1] : "";
 
@@ -64,7 +62,7 @@ public class ConsoleController {
                     case "search", "find" -> handleSearch(args);
                     case "playlist" -> handlePlaylist(args);
                     case "show", "info" -> handleShow(args);
-                    case "list" -> handleList(args);
+                    case "list" -> handleList();
                     case "filter" -> handleFilter(args);
                     case "sort" -> handleSort(args);
                     case "save" -> dataManager.save(catalog);
@@ -101,30 +99,6 @@ public class ConsoleController {
                   load                        - Reload catalog from file
                   exit                        - Exit the application
                 """);
-    }
-
-    private void handleAdd(String type) {
-        if (type.isEmpty()) {
-            System.out.println("Usage: add <type> (song, podcast, audiobook)");
-            return;
-        }
-
-        try {
-            switch (type.toLowerCase()) {
-                case "song" -> addSong();
-                case "podcast" -> addPodcast();
-                case "audiobook" -> addAudiobook();
-                case "playlist" -> {
-                    System.out.print("Enter Playlist Title: ");
-                    String title = scanner.nextLine();
-                    catalog.add(new Playlist(title));
-                    System.out.println("Playlist created.");
-                }
-                default -> System.out.println("Unknown type: " + type);
-            }
-        } catch (IllegalArgumentException e) {
-            System.out.println("Creation failed: " + e.getMessage());
-        }
     }
 
     private void addSong() {
@@ -169,18 +143,44 @@ public class ConsoleController {
         System.out.println("Audiobook added successfully.");
     }
 
+    private void handleAdd(String type) {
+        if (type.isEmpty()) {
+            System.out.println("Usage: add <type> (song, podcast, audiobook)");
+            return;
+        }
+
+        try {
+            switch (type.toLowerCase()) {
+                case "song" -> addSong();
+                case "podcast" -> addPodcast();
+                case "audiobook" -> addAudiobook();
+                case "playlist" -> {
+                    System.out.print("Enter Playlist Title: ");
+                    String title = scanner.nextLine();
+                    catalog.add(new Playlist(title));
+                    System.out.println("Playlist created.");
+                }
+                default -> System.out.println("Unknown type: " + type);
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("Creation failed: " + e.getMessage());
+        }
+        refreshCache();
+    }
+
     private void handleDelete(String title) {
         if (title.isEmpty()) {
             System.out.println("Usage: delete <title>");
             return;
         }
-        Content toRemove = findContentExact(title);
+        Content toRemove = resolveContent(title);
         if (toRemove != null) {
             catalog.remove(toRemove);
             System.out.println("Item '" + title + "' removed.");
         } else {
             System.out.println("Item not found.");
         }
+        refreshCache();
     }
 
     private void handleSearch(String query) {
@@ -191,9 +191,8 @@ public class ConsoleController {
         String q = query.toLowerCase();
         List<Content> results = allContent.stream()
                 .filter(c -> c.getTitle().toLowerCase().contains(q) ||
-                        c.getAuthor().toLowerCase().contains(q) ||
-                        c.getGenre().toString().toLowerCase().contains(q))
-                .collect(Collectors.toList());
+                        c.getAuthor().toLowerCase().contains(q))
+                .toList();
 
         printList(results);
     }
@@ -216,7 +215,7 @@ public class ConsoleController {
                 }
                 case "add", "remove" -> {
                     Playlist pl = findPlaylist(prompt("Playlist Name"));
-                    Content c = findContentExact(prompt("Content Title"));
+                    Content c = resolveContent(prompt("Content Title"));
 
                     if (pl == null) {
                         System.out.println("Playlist not found.");
@@ -265,7 +264,7 @@ public class ConsoleController {
     }
 
     private void handleShow(String title) {
-        Content c = findContentExact(title);
+        Content c = resolveContent(title);
         if (c != null) {
             c.displayInfo();
         } else {
@@ -273,7 +272,7 @@ public class ConsoleController {
         }
     }
 
-    private void handleList(String args) {
+    private void handleList() {
         if (catalog.isEmpty()) {
             System.out.println("Catalog is empty.");
         } else {
@@ -284,7 +283,7 @@ public class ConsoleController {
     private void handleFilter(String args) {
         String[] parts = args.split("\\s+", 2);
         if (parts.length < 2) {
-            System.out.println("Usage: filter <genre|author|year> <value>");
+            System.out.println("Usage: filter <type|genre|author|year> <value>");
             return;
         }
         String type = parts[0].toLowerCase();
@@ -292,11 +291,16 @@ public class ConsoleController {
 
         List<Content> filtered = new ArrayList<>();
         switch (type) {
+            case "type", "category" -> {
+                filtered = allContent.stream()
+                        .filter(c -> c.getClass().getSimpleName().equalsIgnoreCase(value))
+                        .toList();
+            }
             case "genre" -> {
                 try {
                     String genreStr = value.toUpperCase().replace(" ", "_");
                     Genre g = Genre.valueOf(genreStr);
-                    filtered = allContent.stream().filter(c -> c.getGenre() == g).collect(Collectors.toList());
+                    filtered = allContent.stream().filter(c -> c.getGenre() == g).toList();
                 } catch (IllegalArgumentException e) {
                     System.out.println("Invalid genre. Available: ");
                     for (Genre g : Genre.values()) System.out.print(g + " ");
@@ -306,11 +310,11 @@ public class ConsoleController {
             }
             case "author", "artist" -> filtered = allContent.stream()
                     .filter(c -> c.getAuthor().toLowerCase().contains(value.toLowerCase()))
-                    .collect(Collectors.toList());
+                    .toList();
             case "year" -> {
                 try {
                     int y = Integer.parseInt(value);
-                    filtered = allContent.stream().filter(c -> c.getPublicationYear() == y).collect(Collectors.toList());
+                    filtered = allContent.stream().filter(c -> c.getPublicationYear() == y).toList();
                 } catch (NumberFormatException e) {
                     System.out.println("Invalid year.");
                     return;
@@ -326,11 +330,12 @@ public class ConsoleController {
 
     private void handleSort(String args) {
         if (args.isEmpty()) {
-            System.out.println("Usage: sort <title|author|year>");
+            System.out.println("Usage: sort <type|title|author|year>");
             return;
         }
 
         switch (args.toLowerCase()) {
+            case "type" -> catalog.sort(Content.BY_TYPE);
             case "title" -> catalog.sort(Content.BY_TITLE);
             case "author", "artist" -> catalog.sort(Content.BY_AUTHOR);
             case "year" -> catalog.sort(Content.BY_YEAR);
@@ -343,11 +348,40 @@ public class ConsoleController {
         printList(catalog);
     }
 
-    private Content findContentExact(String title) {
-        return catalog.stream()
+    private Content resolveContent(String title) {
+        List<Content> matches = allContent.stream()
                 .filter(c -> c.getTitle().equalsIgnoreCase(title))
-                .findFirst()
-                .orElse(null);
+                .toList();
+
+        if (matches.isEmpty()) {
+            return null;
+        }
+
+        if (matches.size() == 1) {
+            return matches.get(0);
+        }
+
+        System.out.println("Found " + matches.size() + " items with the title '" + title + "'. Please choose one:");
+
+        for (int i = 0; i < matches.size(); i++) {
+            Content c = matches.get(i);
+            System.out.printf(" [%d] %s\n", i + 1, c.toString());
+        }
+
+        while (true) {
+            System.out.print("Select item number (1-" + matches.size() + "): ");
+            try {
+                String input = scanner.nextLine().trim();
+                int choice = Integer.parseInt(input);
+
+                if (choice >= 1 && choice <= matches.size()) {
+                    return matches.get(choice - 1); // Convert 1-based index to 0-based
+                }
+            } catch (NumberFormatException ignored) {
+                continue;
+            }
+            System.out.println("Invalid selection. Please try again.");
+        }
     }
 
     private void printList(List<Content> list) {
@@ -400,5 +434,17 @@ public class ConsoleController {
                 System.out.println("Invalid number. Try again.");
             }
         }
+    }
+
+    private void refreshCache() {
+        allContent = catalog.stream()
+                .flatMap(c -> {
+                    if (c instanceof AudioCollection) {
+                        return Stream.concat(Stream.of(c), ((AudioCollection) c).getItems().stream());
+                    }
+                    return Stream.of(c);
+                })
+                .distinct()
+                .toList();
     }
 }

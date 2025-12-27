@@ -18,8 +18,6 @@ import java.util.Objects;
         @JsonSubTypes.Type(value = Playlist.class, name = "playlist"),
         @JsonSubTypes.Type(value = Album.class, name = "album")
 })
-
-
 public abstract class Content implements Comparable<Content> {
 
     private String title;
@@ -133,6 +131,8 @@ public abstract class Content implements Comparable<Content> {
     public static Comparator<Content> BY_TITLE = Comparator.comparing(s -> s.title);
     public static Comparator<Content> BY_AUTHOR = Comparator.comparing(s -> s.author);
     public static Comparator<Content> BY_YEAR = Comparator.comparing(s -> s.publicationYear);
+    public static Comparator<Content> BY_TYPE = Comparator.comparing(s -> s.getClass().getSimpleName());
+
 
     public abstract void displayInfo();
 

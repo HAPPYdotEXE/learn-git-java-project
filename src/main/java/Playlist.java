@@ -1,7 +1,4 @@
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.time.LocalDate;
-import java.util.List;
 
 public class Playlist extends AudioCollection{
 
@@ -24,7 +21,7 @@ public class Playlist extends AudioCollection{
     }
     public void removeContent(Content content) {
         if (items.remove(content)){
-            System.out.println(String.format("Removed: %s \nFrom: %s", content.toString(), this.getTitle()));
+            System.out.printf("\nRemoved: %s \nFrom: %s", content.toString(), this.getTitle());
         }
     }
 
