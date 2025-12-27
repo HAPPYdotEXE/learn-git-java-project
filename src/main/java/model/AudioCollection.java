@@ -1,3 +1,5 @@
+package model;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -23,7 +25,14 @@ public abstract class AudioCollection extends Content {
     public List<Content> getItems() {
         return items;
     }
-    public abstract void setItems(List<Content> contents);
+
+    @JsonProperty("items")
+    public void setItems(List<Content> content) {
+        if(content != null){
+            this.items.clear();
+            this.items.addAll(content);
+        }
+    }
 
     @JsonIgnore
     @Override

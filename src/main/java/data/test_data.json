@@ -18,8 +18,8 @@
   "albumTitle" : "Single"
 }, {
   "type" : "song",
-  "title" : "Somebody to love(Remix)",
-  "author" : "Basstrologe",
+  "title" : "Somebody to love",
+  "author" : "DJPiqn",
   "publicationYear" : 1996,
   "genre" : "POP",
   "durationMilliseconds" : 350000,
@@ -260,4 +260,27 @@
     "publisher" : "Audible",
     "initialPublicationYear" : 2021
   } ]
+}, {
+  "type" : "playlist",
+  "title" : "testPlaylist",
+  "author" : "User created",
+  "publicationYear" : 2025,
+  "genre" : "MIXED",
+  "items" : [ {
+    "type" : "song",
+    "title" : "Somebody to love",
+    "author" : "Basstrologe",
+    "publicationYear" : 1992,
+    "genre" : "POP",
+    "durationMilliseconds" : 420000,
+    "albumTitle" : "Single"
+  } ]
+}, {
+  "type" : "song",
+  "title" : "Doncamatic",
+  "author" : "Gorillaz",
+  "publicationYear" : 2021,
+  "genre" : "POP",
+  "durationMilliseconds" : 202000,
+  "albumTitle" : "Single"
 } ]
