@@ -1,5 +1,10 @@
+package controller;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import data.DataManager;
+import model.*;
+import view.ConsoleView;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -105,20 +110,20 @@ public class ConsoleController {
 
     private void addSong() {
         Song song = new Song();
-        System.out.println("--- Add Song ---");
+        System.out.println("--- Add core.Song ---");
         song.setTitle(prompt("Title"));
         song.setAuthor(prompt("Artist"));
         song.setPublicationYear(promptInt("Year"));
         song.setGenre(promptGenre());
         song.setDurationMilliseconds(promptDuration());
-        song.setAlbumTitle(prompt("Album title"));
+        song.setAlbumTitle(prompt("core.Album title"));
         catalog.add(song);
-        System.out.println("Song added successfully.");
+        System.out.println("core.Song added successfully.");
     }
 
     private void addPodcast() {
         Podcast podcast = new Podcast();
-        System.out.println("--- Add Podcast ---");
+        System.out.println("--- Add core.Podcast ---");
         podcast.setTitle(prompt("Episode Title"));
         podcast.setAuthor(prompt("Host"));
         podcast.setPublicationYear(promptInt("Year"));
@@ -127,12 +132,12 @@ public class ConsoleController {
         podcast.setSeriesName(prompt("Series Name"));
         podcast.setEpisodeNumber(promptInt("Episode Number"));
         catalog.add(podcast);
-        System.out.println("Podcast added successfully.");
+        System.out.println("core.Podcast added successfully.");
     }
 
     private void addAudiobook() {
         Audiobook ab = new Audiobook();
-        System.out.println("--- Add Audiobook ---");
+        System.out.println("--- Add core.Audiobook ---");
         ab.setTitle(prompt("Title"));
         ab.setAuthor(prompt("Original Author"));
         ab.setPublicationYear(promptInt("Year"));
@@ -142,7 +147,7 @@ public class ConsoleController {
         ab.setPublisher(prompt("Publisher"));
         ab.setInitialPublicationYear(promptInt("Initial Publication Year"));
         catalog.add(ab);
-        System.out.println("Audiobook added successfully.");
+        System.out.println("core.Audiobook added successfully.");
     }
 
     private void handleAdd(String type) {
@@ -157,10 +162,10 @@ public class ConsoleController {
                 case "podcast" -> addPodcast();
                 case "audiobook" -> addAudiobook();
                 case "playlist" -> {
-                    System.out.print("Enter Playlist Title: ");
+                    System.out.print("Enter core.Playlist Title: ");
                     String title = scanner.nextLine();
                     catalog.add(new Playlist(title));
-                    System.out.println("Playlist created.");
+                    System.out.println("core.Playlist created.");
                 }
                 default -> System.out.println("Unknown type: " + type);
             }
@@ -211,20 +216,20 @@ public class ConsoleController {
         try {
             switch (action) {
                 case "create" -> {
-                    if (params.isEmpty()) params = prompt("Enter Playlist Title");
+                    if (params.isEmpty()) params = prompt("Enter core.Playlist Title");
                     catalog.add(new Playlist(params));
-                    System.out.println("Playlist '" + params + "' created.");
+                    System.out.println("core.Playlist '" + params + "' created.");
                 }
                 case "add", "remove" -> {
-                    Playlist pl = findPlaylist(prompt("Playlist Name"));
-                    Content c = resolveContent(prompt("Content Title"));
+                    Playlist pl = findPlaylist(prompt("core.Playlist Name"));
+                    Content c = resolveContent(prompt("core.Content Title"));
 
                     if (pl == null) {
-                        System.out.println("Playlist not found.");
+                        System.out.println("core.Playlist not found.");
                         return;
                     }
                     if (c == null) {
-                        System.out.println("Content not found.");
+                        System.out.println("core.Content not found.");
                         return;
                     }
 
@@ -237,10 +242,10 @@ public class ConsoleController {
                     }
                 }
                 case "sort" -> {
-                    String plSortName = prompt("Playlist Name");
+                    String plSortName = prompt("core.Playlist Name");
                     Playlist plSort = findPlaylist(plSortName);
                     if (plSort == null) {
-                        System.out.println("Playlist not found.");
+                        System.out.println("core.Playlist not found.");
                         return;
                     }
                     String mode = prompt("Sort by (title/author/year/default)");
@@ -415,7 +420,7 @@ public class ConsoleController {
         for (Genre g : Genre.values()) System.out.print(g + " ");
         System.out.println();
         while (true) {
-            System.out.print("Genre: ");
+            System.out.print("core.Genre: ");
             String in = scanner.nextLine().trim().toUpperCase();
             try {
                 return Genre.valueOf(in);

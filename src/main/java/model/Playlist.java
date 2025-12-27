@@ -1,3 +1,5 @@
+package model;
+
 import java.time.LocalDate;
 
 public class Playlist extends AudioCollection{
@@ -23,7 +25,7 @@ public class Playlist extends AudioCollection{
 
     @Override
     public String toString() {
-        return String.format("[Playlist] Title: %s, Items: %d, Duration: %s",
+        return String.format("[core.Playlist] Title: %s, Items: %d, Duration: %s",
                 getTitle(), items.size(), getFormatDuration());
     }
 }

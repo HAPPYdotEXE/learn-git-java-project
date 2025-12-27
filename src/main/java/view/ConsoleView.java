@@ -1,3 +1,7 @@
+package view;
+
+import model.*;
+
 public class ConsoleView {
 
     public void displayInfo(Content content) {
@@ -12,44 +16,44 @@ public class ConsoleView {
         } else if (content instanceof Playlist playlist) {
             displayPlaylist(playlist);
         } else {
-            System.out.println("--- Content: " + content.getTitle() + " ---");
+            System.out.println("--- core.Content: " + content.getTitle() + " ---");
             System.out.println(content.toString());
         }
     }
 
     private void displaySong(Song song) {
-        System.out.println("--- Song: " + song.getTitle() + " ---");
+        System.out.println("--- core.Song: " + song.getTitle() + " ---");
         System.out.println("Author: " + song.getAuthor());
-        System.out.println("Genre: " + song.getGenre());
+        System.out.println("core.Genre: " + song.getGenre());
         System.out.println("Year: " + song.getPublicationYear());
         System.out.println("Duration: " + song.formatDuration());
     }
 
     private void displayPodcast(Podcast podcast) {
-        System.out.println("--- Podcast Episode: " + podcast.getTitle() + " ---");
+        System.out.println("--- core.Podcast Episode: " + podcast.getTitle() + " ---");
         System.out.println("Series: " + podcast.getSeriesName() + "(Ep. " + podcast.getEpisodeNumber() + ")");
         System.out.println("Host: " + podcast.getAuthor());
-        System.out.println("Genre: " + podcast.getGenre());
+        System.out.println("core.Genre: " + podcast.getGenre());
         System.out.println("Year: " + podcast.getPublicationYear());
         System.out.println("Duration: " + podcast.formatDuration());
     }
 
     private void displayAudiobook(Audiobook audiobook) {
-        System.out.println("--- Audiobook: " + audiobook.getTitle() + " ---");
+        System.out.println("--- core.Audiobook: " + audiobook.getTitle() + " ---");
         System.out.println("Original author: " + audiobook.getAuthor());
         System.out.println("Narrator: " + audiobook.getNarrator());
         System.out.println("Initial publication year: " + audiobook.getInitialPublicationYear());
         System.out.println("Publisher: " + audiobook.getPublisher());
-        System.out.println("Genre: " + audiobook.getGenre());
+        System.out.println("core.Genre: " + audiobook.getGenre());
         System.out.println("Year: " + audiobook.getPublicationYear());
         System.out.println("Duration: " + audiobook.formatDuration());
     }
 
     private void displayAlbum(Album album) {
-        System.out.println("\n*** Album: " + album.getTitle() + " ***");
+        System.out.println("\n*** core.Album: " + album.getTitle() + " ***");
         System.out.println("Arist: " + album.getAuthor());
         System.out.println("Year: " + album.getPublicationYear());
-        System.out.println("Genre: " + album.getGenre());
+        System.out.println("core.Genre: " + album.getGenre());
         System.out.println("Entire duration: " + album.getFormatDuration());
         System.out.println("Number of songs: " + album.getItems().size());
 
@@ -61,7 +65,7 @@ public class ConsoleView {
     }
 
     private void displayPlaylist(Playlist playlist) {
-        System.out.println("\n--- Playlist: " + playlist.getTitle() + " ---");
+        System.out.println("\n--- core.Playlist: " + playlist.getTitle() + " ---");
         System.out.println("Elements: " + playlist.getItems().size());
         System.out.println("Duration: " + playlist.getFormatDuration());
 
@@ -70,7 +74,7 @@ public class ConsoleView {
             return;
         }
 
-        System.out.println("--- Content ---");
+        System.out.println("--- core.Content ---");
         int index = 1;
         for(Content c : playlist.getItems()){
             System.out.printf("%d. %s\n", index++, c.toString());

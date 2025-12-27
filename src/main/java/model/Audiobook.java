@@ -1,3 +1,5 @@
+package model;
+
 import java.math.BigInteger;
 
 public class Audiobook extends Content{
@@ -40,7 +42,7 @@ public class Audiobook extends Content{
 
     @Override
     public String toString() {
-        return String.format("[Audiobook] Title: %s, Original Author: %s, Narrator: %s, Duration: %s",
+        return String.format("[core.Audiobook] Title: %s, Original Author: %s, Narrator: %s, Duration: %s",
                 getTitle(), getAuthor(), narrator, formatDuration());
     }
 }

@@ -1,3 +1,5 @@
+package model;
+
 import java.math.BigInteger;
 
 public class Podcast extends Content{
@@ -36,7 +38,7 @@ public class Podcast extends Content{
 
     @Override
     public String toString() {
-        return String.format("[Podcast] Series: %s, Title: %s (E%d), Host: %s, Duration: %s",
+        return String.format("[core.Podcast] Series: %s, Title: %s (E%d), Host: %s, Duration: %s",
                 seriesName, getTitle(), episodeNumber, getGenre(), formatDuration());
     }
 }
