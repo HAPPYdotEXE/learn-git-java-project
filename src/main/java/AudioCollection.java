@@ -35,10 +35,16 @@ public abstract class AudioCollection extends Content {
 
     @JsonIgnore
     public String getFormatDuration() {
-        BigInteger durationSeconds = getDurationMilliseconds().divide(BigInteger.valueOf(1000));
-        BigInteger minutes = durationSeconds.divide(BigInteger.valueOf(60));
-        BigInteger seconds = durationSeconds.remainder(BigInteger.valueOf(60));
-        return String.format("%d min. %02d sec.", minutes, seconds);
+        BigInteger totalSeconds = getDurationMilliseconds().divide(BigInteger.valueOf(1000));
+        BigInteger hours = totalSeconds.divide(BigInteger.valueOf(3600));
+        BigInteger remainingSeconds = totalSeconds.remainder(BigInteger.valueOf(3600));
+        BigInteger minutes = remainingSeconds.divide(BigInteger.valueOf(60));
+        BigInteger seconds = remainingSeconds.remainder(BigInteger.valueOf(60));
+        if (hours.compareTo(BigInteger.ZERO) > 0) {
+            return String.format("%dh %dm %02ds", hours, minutes, seconds);
+        } else {
+            return String.format("%dm %02ds", minutes, seconds);
+        }
     }
 
     public void sortByTitle() {

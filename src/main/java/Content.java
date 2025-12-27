@@ -28,6 +28,7 @@ public abstract class Content implements Comparable<Content> {
     private Genre genre;
     private BigInteger durationMilliseconds;
 
+    private final static int MAX_STRING_LENGTH = 100;
     public final static BigInteger MAX_DURATION = BigInteger.valueOf(8_786_692_000L); // longest audiobook recoded - Shree Haricharitramrut Sagar (milliseconds)
     public final static int MIN_PUBLICATION_YEAR = 1857; // first ever recorded audio - 1857
     public final static int  MAX_PUBLICATION_YEAR = java.time.LocalDate.now(java.time.ZoneOffset.ofHours(14)).getYear(); // maximum possible year no matter where the server is deployed
@@ -65,31 +66,11 @@ public abstract class Content implements Comparable<Content> {
     }
 
     public void setTitle(String title) {
-        if (title == null) {
-            throw new IllegalArgumentException("Title must not be null");
-        }
-        title = title.trim();
-        if (title.isBlank()) {
-            throw new IllegalArgumentException("Title must not be blank");
-        }
-        if (title.length() >= 150) {
-            throw new IllegalArgumentException("Title length must be less than or equal to 150");
-        }
-        this.title = title;
+        this.title = validateString(title, "Title");
     }
 
     public void setAuthor(String author) {
-        if (author == null) {
-            throw new IllegalArgumentException("Author must not be null");
-        }
-        author = author.trim();
-        if (author.isBlank()) {
-            throw new IllegalArgumentException("Author must not be blank");
-        }
-        if (author.length() >= 150) {
-            throw new IllegalArgumentException("Author length must be less than or equal to 150");
-        }
-        this.author = author;
+        this.title = validateString(title, "Author");
     }
 
     public void setPublicationYear(int publicationYear) {
@@ -135,10 +116,18 @@ public abstract class Content implements Comparable<Content> {
     }
 
     public String formatDuration() {
-        BigInteger durationSeconds = durationMilliseconds.divide(BigInteger.valueOf(1000));
-        BigInteger minutes = durationSeconds.divide(BigInteger.valueOf(60));
-        BigInteger seconds = durationSeconds.remainder(BigInteger.valueOf(60));
-        return String.format("%s min. %02d sec.", minutes, seconds);
+        BigInteger totalSeconds = durationMilliseconds.divide(BigInteger.valueOf(1000));
+
+        BigInteger hours = totalSeconds.divide(BigInteger.valueOf(3600));
+        BigInteger remainingSeconds = totalSeconds.remainder(BigInteger.valueOf(3600));
+        BigInteger minutes = remainingSeconds.divide(BigInteger.valueOf(60));
+        BigInteger seconds = remainingSeconds.remainder(BigInteger.valueOf(60));
+
+        if (hours.compareTo(BigInteger.ZERO) > 0) {
+            return String.format("%dh %dm %02ds", hours, minutes, seconds);
+        } else {
+            return String.format("%dm %02ds", minutes, seconds);
+        }
     }
 
     public static Comparator<Content> BY_TITLE = Comparator.comparing(s -> s.title);
@@ -146,4 +135,22 @@ public abstract class Content implements Comparable<Content> {
     public static Comparator<Content> BY_YEAR = Comparator.comparing(s -> s.publicationYear);
 
     public abstract void displayInfo();
+
+    protected String validateString(String value, String fieldName) {
+        if (value == null) {
+            throw new IllegalArgumentException(fieldName + " must not be null");
+        }
+
+        String trimmedValue = value.trim();
+
+        if (trimmedValue.isBlank()) {
+            throw new IllegalArgumentException(fieldName + " must not be blank");
+        }
+
+        if (trimmedValue.length() > MAX_STRING_LENGTH) {
+            throw new IllegalArgumentException(fieldName + " length must be less than or equal to " + MAX_STRING_LENGTH);
+        }
+
+        return trimmedValue;
+    }
 }

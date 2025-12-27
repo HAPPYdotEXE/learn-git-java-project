@@ -1,4 +1,85 @@
 [ {
+  "type" : "audiobook",
+  "title" : "Project Hail Mary",
+  "author" : "Andy Weir",
+  "publicationYear" : 2021,
+  "genre" : "AUDIOBOOK_FICTION",
+  "durationMilliseconds" : 57600000,
+  "narrator" : "Ray Porter",
+  "publisher" : "Audible",
+  "initialPublicationYear" : 2021
+}, {
+  "type" : "song",
+  "title" : "Somebody to love",
+  "author" : "Basstrologe",
+  "publicationYear" : 1992,
+  "genre" : "POP",
+  "durationMilliseconds" : 420000,
+  "albumTitle" : "Single"
+}, {
+  "type" : "song",
+  "title" : "Somebody to love(Remix)",
+  "author" : "Basstrologe",
+  "publicationYear" : 1996,
+  "genre" : "POP",
+  "durationMilliseconds" : 350000,
+  "albumTitle" : "Single"
+}, {
+  "type" : "audiobook",
+  "title" : "Dune",
+  "author" : "Frank Herbert",
+  "publicationYear" : 2007,
+  "genre" : "AUDIOBOOK_FICTION",
+  "durationMilliseconds" : 75600000,
+  "narrator" : "Scott Brick",
+  "publisher" : "Macmillan Audio",
+  "initialPublicationYear" : 1965
+}, {
+  "type" : "podcast",
+  "title" : "Darknet Diaries",
+  "author" : "Jack Rhysider",
+  "publicationYear" : 2023,
+  "genre" : "PODCAST_TECH",
+  "durationMilliseconds" : 3600000,
+  "seriesName" : "Cybersecurity Stories",
+  "episodeNumber" : 130
+}, {
+  "type" : "audiobook",
+  "title" : "Atomic Habits",
+  "author" : "James Clear",
+  "publicationYear" : 2018,
+  "genre" : "AUDIOBOOK_NONFICTION",
+  "durationMilliseconds" : 20000000,
+  "narrator" : "James Clear",
+  "publisher" : "Penguin Audio",
+  "initialPublicationYear" : 2018
+}, {
+  "type" : "podcast",
+  "title" : "The Joe Rogan Experience",
+  "author" : "Joe Rogan",
+  "publicationYear" : 2023,
+  "genre" : "PODCAST_ENTERTAINMENT",
+  "durationMilliseconds" : 7200000,
+  "seriesName" : "JRE",
+  "episodeNumber" : 2000
+}, {
+  "type" : "song",
+  "title" : "Stairway to Heaven",
+  "author" : "Led Zeppelin",
+  "publicationYear" : 1971,
+  "genre" : "ROCK",
+  "durationMilliseconds" : 482000,
+  "albumTitle" : "Led Zeppelin IV"
+}, {
+  "type" : "podcast",
+  "title" : "The Daily",
+  "author" : "Michael Barbaro",
+  "publicationYear" : 2024,
+  "genre" : "PODCAST_EDUCATION",
+  "durationMilliseconds" : 1500000,
+  "seriesName" : "The New York Times",
+  "episodeNumber" : 1845
+}, {
   "type" : "album",
   "title" : "Thriller",
   "author" : "Michael Jackson",
@@ -38,6 +119,69 @@
     "albumTitle" : "Thriller"
   } ]
 }, {
+  "type" : "album",
+  "title" : "Kind of Blue",
+  "author" : "Miles Davis",
+  "publicationYear" : 1959,
+  "genre" : "JAZZ",
+  "items" : [ {
+    "type" : "song",
+    "title" : "So What",
+    "author" : "Miles Davis",
+    "publicationYear" : 1959,
+    "genre" : "JAZZ",
+    "durationMilliseconds" : 562000,
+    "albumTitle" : "Kind of Blue"
+  }, {
+    "type" : "song",
+    "title" : "Freddie Freeloader",
+    "author" : "Miles Davis",
+    "publicationYear" : 1959,
+    "genre" : "JAZZ",
+    "durationMilliseconds" : 586000,
+    "albumTitle" : "Kind of Blue"
+  } ]
+}, {
+  "type" : "song",
+  "title" : "The Godfather Theme",
+  "author" : "Nino Rota",
+  "publicationYear" : 1972,
+  "genre" : "CLASSICAL",
+  "durationMilliseconds" : 180000,
+  "albumTitle" : "The Godfather OST"
+}, {
+  "type" : "song",
+  "title" : "Blinding Lights",
+  "author" : "The Weeknd",
+  "publicationYear" : 2020,
+  "genre" : "POP",
+  "durationMilliseconds" : 200000,
+  "albumTitle" : "After Hours"
+}, {
+  "type" : "playlist",
+  "title" : "Late Night Vibes",
+  "author" : "User created",
+  "publicationYear" : 2025,
+  "genre" : "MIXED",
+  "items" : [ {
+    "type" : "song",
+    "title" : "Midnight City",
+    "author" : "M83",
+    "publicationYear" : 2011,
+    "genre" : "ELECTRONIC",
+    "durationMilliseconds" : 243000,
+    "albumTitle" : "Hurry Up, We're Dreaming"
+  }, {
+    "type" : "podcast",
+    "title" : "Huberman Lab",
+    "author" : "Andrew Huberman",
+    "publicationYear" : 2024,
+    "genre" : "PODCAST_EDUCATION",
+    "durationMilliseconds" : 5400000,
+    "seriesName" : "Science & Health",
+    "episodeNumber" : 156
+  } ]
+}, {
   "type" : "playlist",
   "title" : "My morning mix",
   "author" : "User created",
@@ -70,24 +214,50 @@
     "durationMilliseconds" : 7200000,
     "seriesName" : "JRE",
     "episodeNumber" : 2000
+  }, {
+    "type" : "song",
+    "title" : "I feel like I'm drowning",
+    "author" : "Two Feet",
+    "publicationYear" : 2020,
+    "genre" : "POP",
+    "durationMilliseconds" : 185000,
+    "albumTitle" : "A 20 Something Fuck"
   } ]
 }, {
-  "type" : "podcast",
-  "title" : "The Joe Rogan Experience",
-  "author" : "Joe Rogan",
-  "publicationYear" : 2023,
-  "genre" : "PODCAST_ENTERTAINMENT",
-  "durationMilliseconds" : 7200000,
-  "seriesName" : "JRE",
-  "episodeNumber" : 2000
-}, {
-  "type" : "audiobook",
-  "title" : "Project Hail Mary",
-  "author" : "Andy Weir",
-  "publicationYear" : 2021,
-  "genre" : "AUDIOBOOK_FICTION",
-  "durationMilliseconds" : 57600000,
-  "narrator" : "Ray Porter",
-  "publisher" : "Audible",
-  "initialPublicationYear" : 2021
+  "type" : "playlist",
+  "title" : "bookCollection",
+  "author" : "User created",
+  "publicationYear" : 2025,
+  "genre" : "MIXED",
+  "items" : [ {
+    "type" : "audiobook",
+    "title" : "Atomic Habits",
+    "author" : "James Clear",
+    "publicationYear" : 2018,
+    "genre" : "AUDIOBOOK_NONFICTION",
+    "durationMilliseconds" : 20000000,
+    "narrator" : "James Clear",
+    "publisher" : "Penguin Audio",
+    "initialPublicationYear" : 2018
+  }, {
+    "type" : "audiobook",
+    "title" : "Dune",
+    "author" : "Frank Herbert",
+    "publicationYear" : 2007,
+    "genre" : "AUDIOBOOK_FICTION",
+    "durationMilliseconds" : 75600000,
+    "narrator" : "Scott Brick",
+    "publisher" : "Macmillan Audio",
+    "initialPublicationYear" : 1965
+  }, {
+    "type" : "audiobook",
+    "title" : "Project Hail Mary",
+    "author" : "Andy Weir",
+    "publicationYear" : 2021,
+    "genre" : "AUDIOBOOK_FICTION",
+    "durationMilliseconds" : 57600000,
+    "narrator" : "Ray Porter",
+    "publisher" : "Audible",
+    "initialPublicationYear" : 2021
+  } ]
 } ]

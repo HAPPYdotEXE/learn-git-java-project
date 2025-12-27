@@ -16,17 +16,7 @@ public class Song extends Content{
     }
 
     public void setAlbumTitle(String albumTitle){
-        if (albumTitle == null) {
-            throw new IllegalArgumentException("Album title must not be null");
-        }
-        albumTitle = albumTitle.trim();
-        if (albumTitle.isBlank()) {
-            throw new IllegalArgumentException("Album title must not be blank");
-        }
-        if (albumTitle.length() >= 150) {
-            throw new IllegalArgumentException("Album title length must be less than or equal to 150");
-        }
-        this.albumTitle = albumTitle;
+        this.albumTitle = validateString(albumTitle, "AlbumTitle");
     }
 
     @Override

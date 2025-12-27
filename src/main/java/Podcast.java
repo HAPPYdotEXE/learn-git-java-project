@@ -24,17 +24,7 @@ public class Podcast extends Content{
     }
 
     public void setSeriesName(String seriesName) {
-        if (seriesName == null) {
-            throw new IllegalArgumentException("Series name not be null");
-        }
-        seriesName = seriesName.trim();
-        if (seriesName.isBlank()) {
-            throw new IllegalArgumentException("Series name not be blank");
-        }
-        if (seriesName.length() >= 150) {
-            throw new IllegalArgumentException("Series name must be less than or equal to 150");
-        }
-        this.seriesName = seriesName;
+        this.seriesName = validateString(seriesName, "SeriesName");
     }
 
     public void setEpisodeNumber(int episodeNumber) {

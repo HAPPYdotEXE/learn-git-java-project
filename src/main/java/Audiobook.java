@@ -26,30 +26,10 @@ public class Audiobook extends Content{
         return initialPublicationYear;
     }
     public void setNarrator(String narrator){
-        if (narrator == null) {
-            throw new IllegalArgumentException("Narrator must not be null");
-        }
-        narrator = narrator.trim();
-        if (narrator.isBlank()) {
-            throw new IllegalArgumentException("Narrator must not be blank");
-        }
-        if (narrator.length() >= 150) {
-            throw new IllegalArgumentException("Narrator length must be less than or equal to 150");
-        }
-        this.narrator = narrator;
+        this.narrator = validateString(narrator, "Narrator");
     }
     public void setPublisher(String publisher){
-        if (publisher == null) {
-            throw new IllegalArgumentException("Publisher must not be null");
-        }
-        publisher = publisher.trim();
-        if (publisher.isBlank()) {
-            throw new IllegalArgumentException("Publisher must not be blank");
-        }
-        if (publisher.length() >= 150) {
-            throw new IllegalArgumentException("Publisher length must be less than or equal to 150");
-        }
-        this.publisher = publisher;
+        this.publisher = validateString(publisher, "Publisher");
     }
     public void setInitialPublicationYear(int initialPublicationYear){
         if (initialPublicationYear > Content.MAX_PUBLICATION_YEAR){

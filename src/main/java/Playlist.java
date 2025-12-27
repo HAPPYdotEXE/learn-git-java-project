@@ -51,4 +51,10 @@ public class Playlist extends AudioCollection{
             System.out.printf("%d. %s\n", index++, c.toString());
         }
     }
+
+    @Override
+    public String toString() {
+        return String.format("[Playlist] Title: %s, Items: %d, Duration: %s",
+                getTitle(), items.size(), getFormatDuration());
+    }
 }
