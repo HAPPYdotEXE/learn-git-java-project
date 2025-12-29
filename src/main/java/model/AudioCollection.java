@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -35,20 +36,20 @@ public abstract class AudioCollection extends Content {
     }
 
     @JsonIgnore
-    @Override
-    public BigInteger getDurationMilliseconds() {
+    public BigInteger getDurationSeconds() {
         return items.stream()
-                .map(Content::getDurationMilliseconds)
+                .map(Content::getDurationSeconds)
                 .reduce(BigInteger.ZERO, BigInteger::add);
     }
 
     @JsonIgnore
     public String getFormatDuration() {
-        BigInteger totalSeconds = getDurationMilliseconds().divide(BigInteger.valueOf(1000));
+        BigInteger totalSeconds = getDurationSeconds().divide(BigInteger.valueOf(1000));
         BigInteger hours = totalSeconds.divide(BigInteger.valueOf(3600));
         BigInteger remainingSeconds = totalSeconds.remainder(BigInteger.valueOf(3600));
         BigInteger minutes = remainingSeconds.divide(BigInteger.valueOf(60));
         BigInteger seconds = remainingSeconds.remainder(BigInteger.valueOf(60));
+
         if (hours.compareTo(BigInteger.ZERO) > 0) {
             return String.format("%dh %dm %02ds", hours, minutes, seconds);
         } else {
@@ -58,17 +59,14 @@ public abstract class AudioCollection extends Content {
 
     public void sortByTitle() {
         items.sort(Content.BY_TITLE);
-        System.out.println(this.getClass().getSimpleName() + " \"" + getTitle() + "\" is sorted by title.");
     }
 
     public void sortByAuthor() {
         items.sort(Content.BY_AUTHOR);
-        System.out.println(this.getClass().getSimpleName() + " \"" + getTitle() + "\" is sorted by author.");
     }
 
     public void sortByYear() {
         items.sort(Content.BY_YEAR);
-        System.out.println(this.getClass().getSimpleName() + " \"" + getTitle() + "\" is sorted by publication year.");
     }
 
     public void sortDefault() {

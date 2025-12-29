@@ -26,23 +26,23 @@ public abstract class Content implements Comparable<Content> {
     private String author;
     private int publicationYear;
     private Genre genre;
-    private BigInteger durationMilliseconds;
+    private BigInteger durationSeconds;
 
     private final static int MAX_STRING_LENGTH = 100;
-    public final static BigInteger MAX_DURATION = BigInteger.valueOf(8_786_692_000L); // longest audiobook recoded - Shree Haricharitramrut Sagar (milliseconds)
+    public final static BigInteger MAX_DURATION = BigInteger.valueOf(8_786_692L); // longest audiobook recoded - Shree Haricharitramrut Sagar (seconds)
     public final static int MIN_PUBLICATION_YEAR = 1857; // first ever recorded audio - 1857
     public final static int  MAX_PUBLICATION_YEAR = java.time.LocalDate.now(java.time.ZoneOffset.ofHours(14)).getYear(); // maximum possible year no matter where the server is deployed
 
 
     public Content() {
-    } // used by jackson to load objects and use setters for the values
+    } // empty constructors are used by jackson to load objects and use setters for the values
 
-    public Content(String title, String author, int publicationYear, Genre genre, BigInteger durationMilliseconds) {
+    public Content(String title, String author, int publicationYear, Genre genre, BigInteger durationSeconds) {
         setTitle(title);
         setAuthor(author);
         setPublicationYear(publicationYear);
         setGenre(genre);
-        setDurationMilliseconds(durationMilliseconds);
+        setDurationSeconds(durationSeconds);
     }
 
     public String getTitle() {
@@ -61,8 +61,8 @@ public abstract class Content implements Comparable<Content> {
         return genre;
     }
 
-    public BigInteger getDurationMilliseconds() {
-        return durationMilliseconds;
+    public BigInteger getDurationSeconds() {
+        return durationSeconds;
     }
 
     public void setTitle(String title) {
@@ -87,14 +87,14 @@ public abstract class Content implements Comparable<Content> {
         this.genre = genre;
     }
 
-    public void setDurationMilliseconds(BigInteger durationMilliseconds) {
-        if (durationMilliseconds.compareTo(MAX_DURATION) > 0) {
+    public void setDurationSeconds(BigInteger durationSeconds) {
+        if (durationSeconds.compareTo(MAX_DURATION) > 0) {
             throw new IllegalArgumentException("Duration exceeded");
         }
-        if (durationMilliseconds.compareTo(BigInteger.valueOf(0)) < 0){
+        if (durationSeconds.compareTo(BigInteger.valueOf(0)) < 0){
             throw new IllegalArgumentException("Duration below zero!");
         }
-        this.durationMilliseconds = durationMilliseconds;
+        this.durationSeconds = durationSeconds;
     }
 
     @Override
@@ -116,7 +116,7 @@ public abstract class Content implements Comparable<Content> {
     }
 
     public String formatDuration() {
-        BigInteger totalSeconds = durationMilliseconds.divide(BigInteger.valueOf(1000));
+        BigInteger totalSeconds = durationSeconds.divide(BigInteger.valueOf(1000));
 
         BigInteger hours = totalSeconds.divide(BigInteger.valueOf(3600));
         BigInteger remainingSeconds = totalSeconds.remainder(BigInteger.valueOf(3600));

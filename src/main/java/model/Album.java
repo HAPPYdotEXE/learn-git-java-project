@@ -21,7 +21,7 @@ public class Album extends AudioCollection {
 
     @Override
     public String toString() {
-        return String.format("[core.Album] Title: %s, Artist: %s, Year: %d, Duration: %s, Songs: %d",
+        return String.format("[Album] Title: %s, Artist: %s, Year: %d, Duration: %s, Songs: %d",
                 getTitle(), getAuthor(), getPublicationYear(), getFormatDuration(), items.size());
     }
 
