@@ -42,7 +42,7 @@ public class Audiobook extends Content{
 
     @Override
     public String toString() {
-        return String.format("[core.Audiobook] Title: %s, Original Author: %s, Narrator: %s, Duration: %s",
-                getTitle(), getAuthor(), narrator, formatDuration());
+        return String.format("[Audiobook] Title: %s, Original Author: %s, Publication Year: %d, Narrator: %s, Duration: %s",
+                getTitle(), getAuthor(), getPublicationYear(), narrator, formatDuration());
     }
 }

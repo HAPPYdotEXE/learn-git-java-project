@@ -23,7 +23,7 @@ public class Song extends Content{
 
     @Override
     public String toString(){
-        return String.format("[core.Song] Title: %s, Artist: %s, core.Album: %s, Duration: %s",
+        return String.format("[Song] Title: %s, Artist: %s, Album: %s, Duration: %s",
                 getTitle(), getAuthor(), albumTitle, formatDuration());
     }
 

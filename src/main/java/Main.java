@@ -1,8 +1,8 @@
-import controller.ConsoleController;
+import controller.MainController;
 
 public class Main{
     public static void main(String[] args) {
-        ConsoleController console = new ConsoleController();
+        MainController console = new MainController();
         console.start();
     }
 }
