@@ -4,7 +4,7 @@
   "author" : "Jack Rhysider",
   "publicationYear" : 2023,
   "genre" : "PODCAST_TECH",
-  "durationSeconds" : 3600000,
+  "durationSeconds" : 3600,
   "seriesName" : "Cybersecurity Stories",
   "episodeNumber" : 130
 }, {
@@ -13,7 +13,7 @@
   "author" : "Joe Rogan",
   "publicationYear" : 2023,
   "genre" : "PODCAST_ENTERTAINMENT",
-  "durationSeconds" : 7200000,
+  "durationSeconds" : 7200,
   "seriesName" : "JRE",
   "episodeNumber" : 2000
 }, {
@@ -22,7 +22,7 @@
   "author" : "Gorillaz",
   "publicationYear" : 2021,
   "genre" : "POP",
-  "durationSeconds" : 202000,
+  "durationSeconds" : 202,
   "albumTitle" : "Single"
 }, {
   "type" : "album",
@@ -36,7 +36,7 @@
     "author" : "Miles Davis",
     "publicationYear" : 1959,
     "genre" : "JAZZ",
-    "durationSeconds" : 562000,
+    "durationSeconds" : 562,
     "albumTitle" : "Kind of Blue"
   }, {
     "type" : "song",
@@ -44,7 +44,7 @@
     "author" : "Miles Davis",
     "publicationYear" : 1959,
     "genre" : "JAZZ",
-    "durationSeconds" : 586000,
+    "durationSeconds" : 586,
     "albumTitle" : "Kind of Blue"
   } ]
 }, {
@@ -53,7 +53,7 @@
   "author" : "Nino Rota",
   "publicationYear" : 1972,
   "genre" : "CLASSICAL",
-  "durationSeconds" : 180000,
+  "durationSeconds" : 180,
   "albumTitle" : "The Godfather OST"
 }, {
   "type" : "audiobook",
@@ -61,7 +61,7 @@
   "author" : "Frank Herbert",
   "publicationYear" : 2007,
   "genre" : "AUDIOBOOK_FICTION",
-  "durationSeconds" : 75600000,
+  "durationSeconds" : 75600,
   "narrator" : "Scott Brick",
   "publisher" : "Macmillan Audio",
   "initialPublicationYear" : 1965
@@ -77,7 +77,7 @@
     "author" : "James Clear",
     "publicationYear" : 2018,
     "genre" : "AUDIOBOOK_NONFICTION",
-    "durationSeconds" : 20000000,
+    "durationSeconds" : 20000,
     "narrator" : "James Clear",
     "publisher" : "Penguin Audio",
     "initialPublicationYear" : 2018
@@ -87,7 +87,7 @@
     "author" : "Frank Herbert",
     "publicationYear" : 2007,
     "genre" : "AUDIOBOOK_FICTION",
-    "durationSeconds" : 75600000,
+    "durationSeconds" : 75600,
     "narrator" : "Scott Brick",
     "publisher" : "Macmillan Audio",
     "initialPublicationYear" : 1965
@@ -97,7 +97,7 @@
     "author" : "Andy Weir",
     "publicationYear" : 2021,
     "genre" : "AUDIOBOOK_FICTION",
-    "durationSeconds" : 57600000,
+    "durationSeconds" : 57600,
     "narrator" : "Ray Porter",
     "publisher" : "Audible",
     "initialPublicationYear" : 2021
@@ -114,7 +114,7 @@
     "author" : "Michael Jackson",
     "publicationYear" : 1982,
     "genre" : "POP",
-    "durationSeconds" : 363000,
+    "durationSeconds" : 363,
     "albumTitle" : "Thriller"
   }, {
     "type" : "song",
@@ -122,7 +122,7 @@
     "author" : "Michael Jackson",
     "publicationYear" : 1982,
     "genre" : "POP",
-    "durationSeconds" : 357000,
+    "durationSeconds" : 357,
     "albumTitle" : "Thriller"
   }, {
     "type" : "song",
@@ -130,7 +130,7 @@
     "author" : "Michael Jackson",
     "publicationYear" : 1982,
     "genre" : "ROCK",
-    "durationSeconds" : 258000,
+    "durationSeconds" : 258,
     "albumTitle" : "Thriller"
   }, {
     "type" : "song",
@@ -138,7 +138,7 @@
     "author" : "Michael Jackson",
     "publicationYear" : 1982,
     "genre" : "POP",
-    "durationSeconds" : 294000,
+    "durationSeconds" : 294,
     "albumTitle" : "Thriller"
   } ]
 }, {
@@ -147,7 +147,7 @@
   "author" : "The Weeknd",
   "publicationYear" : 2020,
   "genre" : "POP",
-  "durationSeconds" : 200000,
+  "durationSeconds" : 200,
   "albumTitle" : "After Hours"
 }, {
   "type" : "podcast",
@@ -155,7 +155,7 @@
   "author" : "Michael Barbaro",
   "publicationYear" : 2024,
   "genre" : "PODCAST_EDUCATION",
-  "durationSeconds" : 1500000,
+  "durationSeconds" : 1500,
   "seriesName" : "The New York Times",
   "episodeNumber" : 1845
 }, {
@@ -170,7 +170,7 @@
     "author" : "M83",
     "publicationYear" : 2011,
     "genre" : "ELECTRONIC",
-    "durationSeconds" : 243000,
+    "durationSeconds" : 243,
     "albumTitle" : "Hurry Up, We're Dreaming"
   }, {
     "type" : "podcast",
@@ -178,7 +178,7 @@
     "author" : "Andrew Huberman",
     "publicationYear" : 2024,
     "genre" : "PODCAST_EDUCATION",
-    "durationSeconds" : 5400000,
+    "durationSeconds" : 5400,
     "seriesName" : "Science & Health",
     "episodeNumber" : 156
   } ]
@@ -194,7 +194,7 @@
     "author" : "Andy Weir",
     "publicationYear" : 1980,
     "genre" : "AUDIOBOOK_FICTION",
-    "durationSeconds" : 57600000,
+    "durationSeconds" : 57600,
     "narrator" : "Ray Porter",
     "publisher" : "Audible",
     "initialPublicationYear" : 2021
@@ -204,7 +204,7 @@
     "author" : "Michael Jackson",
     "publicationYear" : 1982,
     "genre" : "ROCK",
-    "durationSeconds" : 258000,
+    "durationSeconds" : 258,
     "albumTitle" : "Thriller"
   }, {
     "type" : "podcast",
@@ -212,7 +212,7 @@
     "author" : "Joe Rogan",
     "publicationYear" : 2023,
     "genre" : "PODCAST_ENTERTAINMENT",
-    "durationSeconds" : 7200000,
+    "durationSeconds" : 7200,
     "seriesName" : "JRE",
     "episodeNumber" : 2000
   }, {
@@ -221,7 +221,7 @@
     "author" : "Two Feet",
     "publicationYear" : 2020,
     "genre" : "POP",
-    "durationSeconds" : 185000,
+    "durationSeconds" : 185,
     "albumTitle" : "A 20 Something Fuck"
   } ]
 }, {
@@ -230,7 +230,7 @@
   "author" : "DJPiqn",
   "publicationYear" : 1996,
   "genre" : "POP",
-  "durationSeconds" : 350000,
+  "durationSeconds" : 350,
   "albumTitle" : "Single"
 }, {
   "type" : "song",
@@ -238,7 +238,7 @@
   "author" : "Basstrologe",
   "publicationYear" : 1992,
   "genre" : "POP",
-  "durationSeconds" : 420000,
+  "durationSeconds" : 420,
   "albumTitle" : "Single"
 }, {
   "type" : "audiobook",
@@ -246,7 +246,7 @@
   "author" : "Andy Weir",
   "publicationYear" : 2021,
   "genre" : "AUDIOBOOK_FICTION",
-  "durationSeconds" : 57600000,
+  "durationSeconds" : 57600,
   "narrator" : "Ray Porter",
   "publisher" : "Audible",
   "initialPublicationYear" : 2021
@@ -256,7 +256,7 @@
   "author" : "James Clear",
   "publicationYear" : 2018,
   "genre" : "AUDIOBOOK_NONFICTION",
-  "durationSeconds" : 20000000,
+  "durationSeconds" : 20000,
   "narrator" : "James Clear",
   "publisher" : "Penguin Audio",
   "initialPublicationYear" : 2018
@@ -266,6 +266,6 @@
   "author" : "Led Zeppelin",
   "publicationYear" : 1971,
   "genre" : "ROCK",
-  "durationSeconds" : 482000,
+  "durationSeconds" : 482,
   "albumTitle" : "Led Zeppelin IV"
 } ]

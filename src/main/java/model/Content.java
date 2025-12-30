@@ -82,7 +82,7 @@ public abstract class Content implements Comparable<Content> {
 
     public void setGenre(Genre genre) {
         if(genre == null){
-            throw new IllegalArgumentException("Cannot have null as genre");
+            throw new IllegalArgumentException("Invalid genre.");
         }
         this.genre = genre;
     }
@@ -116,10 +116,9 @@ public abstract class Content implements Comparable<Content> {
     }
 
     public String formatDuration() {
-        BigInteger totalSeconds = durationSeconds.divide(BigInteger.valueOf(1000));
 
-        BigInteger hours = totalSeconds.divide(BigInteger.valueOf(3600));
-        BigInteger remainingSeconds = totalSeconds.remainder(BigInteger.valueOf(3600));
+        BigInteger hours = durationSeconds.divide(BigInteger.valueOf(3600));
+        BigInteger remainingSeconds = durationSeconds.remainder(BigInteger.valueOf(3600));
         BigInteger minutes = remainingSeconds.divide(BigInteger.valueOf(60));
         BigInteger seconds = remainingSeconds.remainder(BigInteger.valueOf(60));
 

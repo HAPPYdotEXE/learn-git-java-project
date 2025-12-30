@@ -44,9 +44,8 @@ public abstract class AudioCollection extends Content {
 
     @JsonIgnore
     public String getFormatDuration() {
-        BigInteger totalSeconds = getDurationSeconds().divide(BigInteger.valueOf(1000));
-        BigInteger hours = totalSeconds.divide(BigInteger.valueOf(3600));
-        BigInteger remainingSeconds = totalSeconds.remainder(BigInteger.valueOf(3600));
+        BigInteger hours = getDurationSeconds().divide(BigInteger.valueOf(3600));
+        BigInteger remainingSeconds = getDurationSeconds().remainder(BigInteger.valueOf(3600));
         BigInteger minutes = remainingSeconds.divide(BigInteger.valueOf(60));
         BigInteger seconds = remainingSeconds.remainder(BigInteger.valueOf(60));
 
